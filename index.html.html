@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD Abul Bashar Toshib | Research Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --primary:#3b82f6;
+  --secondary:#6366f1;
+  --bg:#f8fafc;
+  --text:#1e293b;
+  --glass:rgba(255,255,255,0.7);
+}
+
+body.dark{
+  --bg:#0f172a;
+  --text:#f1f5f9;
+  --glass:rgba(30,41,59,0.6);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s ease;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:30px 20px;
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(12px);
+  background:var(--glass);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  flex-wrap:wrap;
+  z-index:1000;
+}
+
+nav a{
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:500;
+  color:var(--text);
+  transition:0.3s;
+}
+
+nav a:hover{ color:var(--primary); }
+
+.toggle{
+  cursor:pointer;
+  padding:6px 14px;
+  border-radius:20px;
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  color:white;
+  font-size:13px;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  padding:80px 0;
+}
+
+.hero-text{ flex:1; min-width:280px; }
+
+.hero-text h1{
+  font-size:42px;
+  font-weight:900;
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-text p{
+  margin-top:20px;
+  font-size:16px;
+  opacity:0.8;
+}
+
+.hero img{
+  width:100%;
+  max-width:250px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  margin-top:20px;
+}
+
+/* BUTTON */
+.button{
+  display:inline-block;
+  margin-top:15px;
+  margin-right:10px;
+  padding:12px 26px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  color:white;
+  transition:0.3s;
+}
+
+.button:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(59,130,246,0.4);
+}
+
+/* SECTION */
+.section{
+  padding:60px 0;
+}
+
+.section h2{
+  font-size:28px;
+  margin-bottom:30px;
+  position:relative;
+}
+
+.section h2::after{
+  content:"";
+  width:60px;
+  height:3px;
+  background:var(--primary);
+  position:absolute;
+  left:0;
+  bottom:-10px;
+}
+
+/* GLASS CARD */
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:25px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* SKILLS */
+.skill{ margin-bottom:20px; }
+.skill-name{ font-weight:600; margin-bottom:8px; }
+.skill-bar{
+  width:100%;
+  height:8px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+.skill-progress{
+  height:100%;
+  background:linear-gradient(45deg,var(--primary),var(--secondary));
+  width:0;
+  transition:1.5s ease;
+}
+
+/* TIMELINE */
+.timeline{
+  border-left:3px solid var(--primary);
+  padding-left:20px;
+}
+.timeline-item{ margin-bottom:20px; }
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px 0;
+  opacity:0.6;
+}
+
+.social-icons a{
+  margin:0 10px;
+  color:var(--text);
+  font-size:20px;
+  transition:0.3s;
+}
+.social-icons a:hover{ color:var(--primary); }
+
+/* SCROLL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE FIXES */
+@media(max-width:1024px){
+  .hero-text h1{ font-size:38px; }
+}
+
+@media(max-width:768px){
+  nav{ flex-direction:column; align-items:flex-start; }
+  nav div:last-child{ margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; }
+
+  .hero{ flex-direction:column; text-align:center; }
+  .hero img{ margin-top:20px; }
+
+  .project-grid{ grid-template-columns:1fr; }
+  .section h2{ font-size:24px; }
+  .hero-text h1{ font-size:32px; }
+  .hero-text p{ font-size:14px; }
+  .button{ padding:10px 20px; font-size:14px; }
+
+  .card{ padding:15px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<nav>
+  <div><strong>MD. Abul Bashar Toshib</strong></div>
+  <div>
+    <a href="#affiliation">Affiliation</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#publications">Publications</a>
+    <a href="#contact">Contact</a>
+    <span class="toggle" onclick="toggleMode()">Mode</span>
+  </div>
+</nav>
+
+<section class="hero reveal">
+  <div class="hero-text">
+    <h1>Electrical & Electronic Engineering Researcher</h1>
+    <p>
+      Focused on Smart Grid Systems, Digital Twin Technology,
+      Transformer Health Monitoring, and Cybersecurity in Power Infrastructure.
+    </p>
+    <a href="CV.pdf" download class="button">Download CV</a>
+    <a href="https://github.com/" target="_blank" class="button">GitHub</a>
+    <a href="https://linkedin.com/" target="_blank" class="button">LinkedIn</a>
+  </div>
+  <img src="https://drive.google.com/uc?export=view&id=1o7YCCyADZlHN3LmKQ2KDxvQge3yJ6-0s" alt="Profile Photo">
+</section>
+
+<!-- Academic Affiliation -->
+<section id="affiliation" class="section reveal">
+  <h2>Academic Affiliation</h2>
+  <div class="card">
+    <h3>🎓 Daffodil International University</h3>
+    <p>BSc in Electrical & Electronic Engineering (EEE)</p>
+    <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <a href="https://daffodilvarsity.edu.bd/" target="_blank">
+        <img src="images/DIU-Logo.png" alt="DIU Logo" style="height:60px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
+      </a>
+      <a href="https://eee.daffodilvarsity.edu.bd/" target="_blank">
+        <img src="images/EEE-logo.jpg" alt="EEE Department Logo" style="height:60px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
+      </a>
+    </div>
+
+    <h4>🎓 Cambrian College, Dhaka</h4>
+    <p>Intermediate in Science</p>
+    <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <a href="https://www.cambrian.edu.bd/" target="_blank">
+        <img src="images/Cambrian-logo.png" alt="Cambrian Logo" style="height:60px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2);">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Research Interests -->
+<section id="research" class="section reveal">
+  <h2>Research Interests</h2>
+  <div class="card">
+    • Smart Transformer Monitoring<br>
+    • Digital Twin for Distribution Grids<br>
+    • Fault Detection & Load Flow Analysis<br>
+    • Renewable Energy Integration<br>
+    • Cybersecurity in Smart Grids
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section reveal">
+  <h2>Selected Projects</h2>
+  <div class="project-grid">
+    <div class="card">
+      <h3>IoT Liquid Monitoring</h3>
+      University prototype system with motor control integration.
+    </div>
+    <div class="card">
+      <h3>Digital Twin Transformer Concept</h3>
+      Low-cost predictive fault detection system for rural grids.
+    </div>
+    <div class="card">
+      <h3>Security Research & Bug Hunting</h3>
+      Web vulnerability testing and automation tools.
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="section reveal">
+  <h2>Technical Skills</h2>
+  <div class="card">
+    <ul>
+      <li>Electrical Design</li>
+      <li>Troubleshooting</li>
+      <li>Proficient in Microsoft Word, PowerPoint, Excel, and AutoCAD</li>
+      <li>Good hands-on experience in Python and C</li>
+      <li>Knowledge of Cybersecurity and Ethical Hacking; part-time ethical hacker at 
+        <a href="https://www.hackerone.com/" target="_blank">@HackerOne</a>, 
+        <a href="https://www.bugcrowd.com/" target="_blank">@Bugcrowd</a>, and 
+        <a href="https://www.yeswehack.com/" target="_blank">@YesWeHack</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" class="section reveal">
+  <h2>Experience</h2>
+  <div class="card">
+    <ul>
+      <li><strong>IoT Based Liquid Monitoring System Design:</strong> Led a team in designing and building an IoT Based Liquid Monitoring System Prototype as a University Project. Developed motor control circuits and sensors for precise navigation, improving skills in electrical design and teamwork.</li>
+      <li><strong>Power Systems Internship:</strong> Completed a summer internship at a leading power systems company. Assisted with load flow analysis and fault detection simulations, and contributed to the design of a renewable energy integration project, gaining practical insights into power system operations.</li>
+      <li><strong>Wireless Communication Research:</strong> Supported research on wireless communication systems in the university's electronics lab. Conducted experiments, analyzed data, enhancing understanding of wireless communication principles.</li>
+      <li><strong>IEEE DIU WIE:</strong> Executive Member 2026 – Tech Team Lead. Led technical initiatives and projects, coordinated team members, and organized workshops and webinars.</li>
+      <li><strong>Achievements:</strong> Winner of Power Talk Series 1.1 Quiz Contest.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications" class="section reveal">
+  <h2>Publications</h2>
+  <div class="card">
+    Conference Paper (In Progress):<br>
+    “Low-Cost Digital Twin–Enabled Smart Transformer Monitoring System for Unstable Rural Grids”
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section reveal">
+  <h2>Contact</h2>
+  <div class="card">
+    Email: mail.ieee.0xbashar@gmail.com <br>
+    Location: Dhaka, Bangladesh
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <p>© 2026 MD. Abul Bashar Toshib | Research Portfolio</p>
+</footer>
+
+</div>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("dark");
+}
+
+function reveal(){
+  let reveals=document.querySelectorAll(".reveal");
+  reveals.forEach(el=>{
+    let windowHeight=window.innerHeight;
+    let elementTop=el.getBoundingClientRect().top;
+    if(elementTop < windowHeight-100){
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
+
+</body>
+</html>
